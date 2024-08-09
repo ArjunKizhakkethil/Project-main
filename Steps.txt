@@ -1,0 +1,42 @@
+Steps for the Implementation:
+
+1. Importing Libraries: 
+    - `pandas` and `numpy` are imported for data manipulation.
+    - `re` is imported for regular expression operations.
+    - `openpyxl` is imported for working with Excel files.
+
+2. Loading Data:
+    - Two datasets, `mal_data` and `mal_data_test`, are loaded from CSV files. The first one is loaded from a local file, and the second one is loaded directly from a URL.
+    - The `ID` column is dropped from both datasets.
+
+3. Data Preprocessing:
+    - Two functions, `remove_symbols` and `remove_emojis`, are defined to clean the text data in the `Tweets` column.
+    - The `remove_symbols` function removes Twitter handles (@) and hashtags (#) from tweets.
+    - The `remove_emojis` function removes emojis from tweets using a regular expression pattern.
+    - Both functions are applied to the `Tweets` column of `mal_data` to clean the text data.
+
+4. Label Encoding:
+    - The labels in the `Labels` column of both datasets are encoded into numerical format. 
+    - For `mal_data`, 'OFF' is replaced with 1 and 'NOT' is replaced with 0.
+    - For `mal_data_test`, 'HOF' is replaced with 1 and 'NOT' is replaced with 0.
+
+5. Installing Required Package:
+    - The `openpyxl` package is installed using pip. This package is likely used later for working with Excel files.
+
+6. Exploring Data:
+    - The first five rows of both datasets (`mal_data` and `mal_data_test`) are displayed to inspect the data.
+
+7. Splitting Data:
+    - The data is split into features (`X_train` and `X_test`) and labels (`y_train` and `y_test`).
+
+8. Feature Extraction:
+    - The `CountVectorizer` from `sklearn.feature_extraction.text` is used to convert text data into a matrix of token counts.
+    - `X_train` and `X_test` are transformed using the vectorizer.
+
+9. Model Building:
+    - A Random Forest Classifier model is initialized with specified hyperparameters.
+    - The model is trained using the training data (`X_train` and `y_train`).
+
+10. Model Evaluation:
+    - The trained model is used to make predictions on the test data (`X_test`).
+    - Classification report containing precision, recall, f1-score, and support for each class is printed using `sklearn.metrics.classification_report`. This provides a summary of the model's performance on the test data.
